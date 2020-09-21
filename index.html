@@ -48,6 +48,26 @@
                 }
             }
         });
+        getData().catch(e => console.log(e));
+        async function getData() {
+            let data = await fetch("./ramen-ratings.csv");
+            let response = await data.text();
+            let table = response.split('\n').slice(1);
+
+            table.forEach(row => {
+                let col = row.split(',');
+
+                let brand = col[1];
+                let variety = col[2];
+                let style = col[3];
+                let country = col[4];
+                let stars = col[5];
+
+            });
+            console.log(table[0].country)
+            // let Jpn = table.filter(row => country === 'Japan');
+            // let JPN = table.filter(ele => ele.)
+        }
     </script>
 </body>
 </html>

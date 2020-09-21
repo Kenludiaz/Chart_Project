@@ -54,6 +54,8 @@
             let response = await data.text();
             let table = response.split('\n').slice(1);
 
+            let JPN = []
+
             table.forEach(row => {
                 let col = row.split(',');
 
@@ -63,10 +65,13 @@
                 let country = col[4];
                 let stars = col[5];
 
+                if (country == "Japan" && 
+                style == "Cup") {
+                    JPN.push(row);
+                }
             });
-            console.log(table[0].country)
-            // let Jpn = table.filter(row => country === 'Japan');
-            // let JPN = table.filter(ele => ele.)
+            
+
         }
     </script>
 </body>

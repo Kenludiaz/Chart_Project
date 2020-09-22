@@ -16,15 +16,20 @@
         async function graph() {
             let canvas = document.querySelector('canvas');
             let dataSet =  await getData().catch(e => console.log(e));
-            console.log(dataSet.forEach(a => a.stars));
+            // Deconstruction
+            let stars = dataSet.map(a => (a.stars));
             
+            //
+            let labels = (dataSet.map(a => a.brand + ", " + a.variety));
+            // console.log(labels);
+
             let myChart = new Chart(canvas, {
                 type: 'bar',
                 data: {
-                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    labels: [...labels],
                     datasets: [{
-                        label: '# of Votes',
-                        data: [dataSet.forEach(a => a.stars)],
+                        label: 'Top Ten Ramen',
+                        data: [...stars],
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)',
                             'rgba(54, 162, 235, 0.2)',
@@ -94,6 +99,8 @@
             while (JPN.length > 10) {
                 JPN.pop();
             }
+            //returning an object
+            console.log(JPN);
             return JPN;
         
             //push the data's rating into data

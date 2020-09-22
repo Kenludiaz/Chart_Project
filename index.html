@@ -10,69 +10,94 @@
 <body>
     <canvas id="ramen-reviews" width="600" height="400"></canvas>
     <script defer>
-        let canvas = document.querySelector('canvas');
-        let myChart = new Chart(canvas, {
-            type: 'bar',
-            data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
+        graph().catch(e => console.log(e));
 
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
+
+        async function graph() {
+            let canvas = document.querySelector('canvas');
+            let dataSet =  await getData().catch(e => console.log(e));
+            console.log(dataSet.forEach(a => a.stars));
+            
+            let myChart = new Chart(canvas, {
+                type: 'bar',
+                data: {
+                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [dataSet.forEach(a => a.stars)],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
                     }]
+                },
+
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
                 }
-            }
-        });
-        getData().catch(e => console.log(e));
+            });
+        }
+        
         async function getData() {
             let data = await fetch("./ramen-ratings.csv");
             let response = await data.text();
             let table = response.split('\n').slice(1);
+            let JPN = [];
 
-            let JPN = []
+            class Ramen{
+                constructor(brand, variety, stars) {
+                    this.brand = brand;
+                    this.variety = variety;
+                    this.stars = parseFloat(stars);
+                }   
+            };
 
             table.forEach(row => {
                 let col = row.split(',');
 
-                let brand = col[1];
-                let variety = col[2];
-                let style = col[3];
-                let country = col[4];
-                let stars = col[5];
-
-                if (country == "Japan" && 
-                style == "Cup") {
-                    JPN.push(row);
+                if (col[4] == "Japan" && col[3] == "Cup" && col[1] != "Nissin") {
+                    JPN.push(new Ramen(col[1], col[2], col[5]));
                 }
             });
             
-
-        }
+            // sort the data in ascending order into a group of 10
+            JPN.sort((a, b) => { 
+                if (a.stars > b.stars) {
+                    return -1;
+                }
+                if (a.stars < b.stars) {
+                    return 1;
+                }
+                else {
+                    return 0;
+                }
+            })
+            while (JPN.length > 10) {
+                JPN.pop();
+            }
+            return JPN;
+        
+            //push the data's rating into data
+        };
     </script>
 </body>
 </html>

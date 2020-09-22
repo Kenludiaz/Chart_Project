@@ -8,103 +8,133 @@
     </script>
 </head>
 <body>
-    <canvas id="ramen-reviews" width="600" height="400"></canvas>
-    <script defer>
-        graph().catch(e => console.log(e));
+    <header>
+        <nav class="nav">
+            <h1 class="logo">Ken's Ramen Review</h1>
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">About</a>
+                    <a href="#" class="nav-link">Contact</a>
+                    <a href="#" class="nav-link">Blog</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="call-to-action">
+        <h2 class="call-to-action-title">ようこそ！</h2>
+        <p class="call-to-action-text">Welcome! This is a site for ramen and convenient food enthusiast to gather and discuss the complexities of this delicious noodle soup. This week
+            we talk about Japanese Cup Ramen Noodle. I excluded any Nissin brands because it just would not be a fair comparison, since most Nissin ramen have 5 stars in my boat. Feel free to let me know if you agree with 
+            <a href="https://www.theramenrater.com/">The Ramen Rater's</a> ratings or not. Follow me on <a href="">Youtube</a> and <a href="">Tumblr.</a>
+        </p>
+    </div>
+    <section class="info-graph">
+        <div class="info-graph-left">
+            <h2 class="info-graph-title">Top Ten Japanese (Non-Nissin) Cup Ramen</h2>
+            <p class="info-graph-text">These are the Top Ten Japanese Ramen according to </p>
+        </div>
+        <figure>
+             <!-- Data was obtained by Kaggle.com -->
+            <canvas id="ramen-reviews" width="600" height="400"></canvas>
+            <figcaption>Top Ten Japanese (Non-Nissin) Cup Ramen according to <a href="https://www.theramenrater.com/">The Ramen Rater</a></figcaption>
+        </figure>
+
+            <script defer>
+            graph().catch(e => console.log(e));
 
 
-        async function graph() {
-            let canvas = document.querySelector('canvas');
-            let dataSet =  await getData().catch(e => console.log(e));
-            // Deconstruction
-            let stars = dataSet.map(a => (a.stars));
-            
-            //
-            let labels = (dataSet.map(a => a.brand + ", " + a.variety));
-            // console.log(labels);
+            async function graph() {
+                let canvas = document.querySelector('canvas');
+                let dataSet =  await getData().catch(e => console.log(e));
+                // Deconstruction
+                let stars = dataSet.map(a => (a.stars));
+                
+                //
+                let labels = (dataSet.map(a => a.brand + ", " + a.variety));
+                // console.log(labels);
 
-            let myChart = new Chart(canvas, {
-                type: 'bar',
-                data: {
-                    labels: [...labels],
-                    datasets: [{
-                        label: 'Top Ten Ramen',
-                        data: [...stars],
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-
-                options: {
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true
-                            }
+                let myChart = new Chart(canvas, {
+                    type: 'bar',
+                    data: {
+                        labels: [...labels],
+                        datasets: [{
+                            label: 'Top Ten Japanese (None-Nissin) Cup Ramen',
+                            data: [...stars],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
                         }]
+                    },
+
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
                     }
-                }
-            });
-        }
-        
-        async function getData() {
-            let data = await fetch("./ramen-ratings.csv");
-            let response = await data.text();
-            let table = response.split('\n').slice(1);
-            let JPN = [];
-
-            class Ramen{
-                constructor(brand, variety, stars) {
-                    this.brand = brand;
-                    this.variety = variety;
-                    this.stars = parseFloat(stars);
-                }   
-            };
-
-            table.forEach(row => {
-                let col = row.split(',');
-
-                if (col[4] == "Japan" && col[3] == "Cup" && col[1] != "Nissin") {
-                    JPN.push(new Ramen(col[1], col[2], col[5]));
-                }
-            });
-            
-            // sort the data in ascending order into a group of 10
-            JPN.sort((a, b) => { 
-                if (a.stars > b.stars) {
-                    return -1;
-                }
-                if (a.stars < b.stars) {
-                    return 1;
-                }
-                else {
-                    return 0;
-                }
-            })
-            while (JPN.length > 10) {
-                JPN.pop();
+                });
             }
-            //returning an object
-            console.log(JPN);
-            return JPN;
-        
-            //push the data's rating into data
-        };
-    </script>
+            
+            async function getData() {
+                let data = await fetch("./ramen-ratings.csv");
+                let response = await data.text();
+                let table = response.split('\n').slice(1);
+                let JPN = [];
+
+                class Ramen{
+                    constructor(brand, variety, stars) {
+                        this.brand = brand;
+                        this.variety = variety;
+                        this.stars = parseFloat(stars);
+                    }   
+                };
+
+                table.forEach(row => {
+                    let col = row.split(',');
+
+                    if (col[4] == "Japan" && col[3] == "Cup" && col[1] != "Nissin") {
+                        JPN.push(new Ramen(col[1], col[2], col[5]));
+                    }
+                });
+                
+                // sort the data in ascending order into a group of 10
+                JPN.sort((a, b) => { 
+                    if (a.stars < b.stars) {
+                        return -1;
+                    }
+                    if (a.stars > b.stars) {
+                        return 1;
+                    }
+                    else {
+                        return 0;
+                    }
+                })
+                while (JPN.length > 10) {
+                    JPN.shift();
+                }
+                //returning an object
+                // console.log(JPN);
+                return JPN;
+            
+                //push the data's rating into data
+            };
+        </script>
+    </section>
 </body>
 </html>

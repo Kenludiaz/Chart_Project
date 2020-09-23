@@ -85,7 +85,8 @@ $white: #fffefe;
 }
 //======CTA=======
 .call-to-action {
-
+    
+    margin: 1.77rem 0 5.5rem;
     .call-to-action-title {
         margin-bottom: 1rem;
         color: $black;
@@ -128,15 +129,9 @@ $white: #fffefe;
 }
 
 
-@media (min-width: 800px) and (orientation: portrait) {
+@media (min-width: 800px) {
     .call-to-action {
-        background-color: $mustard;
-        .call-to-action-title {
-            margin-bottom: 1rem;
-            color: $black;
-        }
-        .call-to-action-text {
-            @include Paragraph();
-        }
+        height: 40vh;
+        margin: 7.37rem calc(50px + 45vw) 10rem 0;
     }
 }

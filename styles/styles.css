@@ -61,6 +61,10 @@ body {
   margin-left: 2.37rem;
 }
 
+.call-to-action {
+  margin: 1.77rem 0 5.5rem;
+}
+
 .call-to-action .call-to-action-title {
   margin-bottom: 1rem;
   color: #2F2F2F;
@@ -100,22 +104,10 @@ body {
   width: 100%;
 }
 
-@media (min-width: 800px) and (orientation: portrait) {
+@media (min-width: 800px) {
   .call-to-action {
-    background-color: #E8D646;
-  }
-  .call-to-action .call-to-action-title {
-    margin-bottom: 1rem;
-    color: #2F2F2F;
-  }
-  .call-to-action .call-to-action-text {
-    display: block;
-    margin: 0 auto 4.21rem;
-    max-width: 60ch;
-    width: 90%;
-    text-align: justify;
-    line-height: 1.9rem;
-    letter-spacing: -0.04em;
+    height: 40vh;
+    margin: 7.37rem calc(50px + 45vw) 10rem 0;
   }
 }
 /*# sourceMappingURL=styles.css.map */

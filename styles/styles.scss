@@ -1,3 +1,14 @@
+
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Coiny&family=Noto+Sans+JP:wght@400;700;900&display=swap');
+@mixin Coiny {
+    font-family: 'Coiny', cursive;
+}
+@mixin Noto {
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+//======Root=======
 *,
 *::after,
 *::before {
@@ -5,9 +16,59 @@
     margin: 0;
     box-sizing: border-box;
 }
+body {
+    @include Noto();
+}
+
+//======Colors=======
+$orange: #FFC259;
+$mustard: #E8D646;
+$lime: #9FFF47;
+$brownish: #E87346;
+$black: #2F2F2F;
+$grey: #333;
+$white: #fffefe;
+
+//======Nav=======
+.header {
+    .nav {
+        text-align: center;
+        background-color: $white;
+        .logo {
+            @include Coiny();
+            font-size: 2.37rem;
+            color: $brownish;
+        }
+        .sub-logo {
+            @include Noto();
+            font-size: 1rem;
+            color: $brownish;
+        }
+    }
+    .nav-list {
+    
+        .nav-item {
+            margin: 1rem 0;
+            display: inline-block;
+            list-style-type: none;
+            .nav-link {
+                color: $grey;
+                text-decoration: none;
+                text-transform: uppercase;
+                font-weight: bold;
+            }
+        }
+        .nav-item + .nav-item {
+            margin-left: 2.37rem;
+        }
+
+    }
+}
 
 
 
+
+//======Figure=======
 .figure {
     .canvas-resize {
         position: relative;

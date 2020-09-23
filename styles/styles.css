@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Coiny&family=Noto+Sans+JP:wght@400;700;900&display=swap");
 *,
 *::after,
 *::before {
@@ -5,6 +6,44 @@
   margin: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+.header .nav {
+  text-align: center;
+  background-color: #fffefe;
+}
+
+.header .nav .logo {
+  font-family: 'Coiny', cursive;
+  font-size: 2.37rem;
+  color: #E87346;
+}
+
+.header .nav .sub-logo {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 1rem;
+  color: #E87346;
+}
+
+.header .nav-list .nav-item {
+  margin: 1rem 0;
+  display: inline-block;
+  list-style-type: none;
+}
+
+.header .nav-list .nav-item .nav-link {
+  color: #333;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.header .nav-list .nav-item + .nav-item {
+  margin-left: 2.37rem;
 }
 
 .figure .canvas-resize {

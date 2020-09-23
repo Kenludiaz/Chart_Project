@@ -36,7 +36,9 @@
         </div>
         <figure class="figure">
              <!-- Data was obtained by Kaggle.com -->
-            <canvas id="ramen-reviews" width="600" height="400"></canvas>
+            <div class="canvas-resize">
+                <canvas id="ramen-reviews" class="ramen-reviews" width="300" height="300"></canvas>
+            </div>
             <figcaption class="fig-caption">Top Ten Japanese (Non-Nissin) Cup Ramen according to <a href="https://www.theramenrater.com/">The Ramen Rater</a>.</figcaption>
         </figure>
 
@@ -51,7 +53,7 @@
                 let stars = dataSet.map(a => (a.stars));
                 
                 //
-                let labels = (dataSet.map(a => a.brand + ", " + a.variety));
+                let labels = (dataSet.map(a =>  a.variety));
                 // console.log(labels);
 
                 let myChart = new Chart(canvas, {
@@ -61,27 +63,22 @@
                         datasets: [{
                             label: 'Top Ten Japanese (None-Nissin) Cup Ramen',
                             data: [...stars],
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
+                            backgroundColor: 
                                 'rgba(255, 159, 64, 0.2)'
-                            ],
-                            borderColor: [
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
+                            ,
+                            borderColor: 
                                 'rgba(255, 159, 64, 1)'
-                            ],
+                            ,
                             borderWidth: 1
                         }]
                     },
 
                     options: {
+                        legend: {
+                            display: false
+                        },
+                        maintainAspectRatio: false,
+                        responsive: true,
                         scales: {
                             yAxes: [{
                                 ticks: {

@@ -7,7 +7,15 @@
 @mixin Noto {
     font-family: 'Noto Sans JP', sans-serif;
 }
-
+@mixin Paragraph {
+    display: block;
+    margin: 0 auto 4.21rem;
+    max-width: 60ch;
+    width: 90%;
+    text-align: justify;
+    line-height: 1.9rem;
+    letter-spacing: -0.04em;
+}
 //======Root=======
 *,
 *::after,
@@ -18,6 +26,7 @@
 }
 body {
     @include Noto();
+    text-align: center;
 }
 
 //======Colors=======
@@ -38,6 +47,8 @@ $white: #fffefe;
             @include Coiny();
             font-size: 2.37rem;
             color: $brownish;
+            line-height: 1.77rem;
+            margin-bottom: 1rem;
         }
         .sub-logo {
             @include Noto();
@@ -50,12 +61,20 @@ $white: #fffefe;
         .nav-item {
             margin: 1rem 0;
             display: inline-block;
-            list-style-type: none;
             .nav-link {
                 color: $grey;
                 text-decoration: none;
                 text-transform: uppercase;
                 font-weight: bold;
+                list-style-type: none;
+                transition: opacity 400ms;
+                &:hover {
+                    color: $mustard;
+                }
+                &:active {
+                    transition: opacity 400ms;
+                    opacity: .3;
+                }
             }
         }
         .nav-item + .nav-item {
@@ -64,19 +83,60 @@ $white: #fffefe;
 
     }
 }
+//======CTA=======
+.call-to-action {
+
+    .call-to-action-title {
+        margin-bottom: 1rem;
+        color: $black;
+    }
+    .call-to-action-text {
+        @include Paragraph();
+    }
+}
 
 
 
 
 //======Figure=======
+.info-graph {
+    .info-graph-container {
+        .info-graph-title {
+            background-color: $grey;
+            color: $lime;
+            text-align: center;
+            padding: 2.37rem;
+            margin-bottom: 1.77rem;
+        }
+        .info-graph-text {
+            @include Paragraph();
+        }
+    }
+}
+
+
 .figure {
     .canvas-resize {
         position: relative;
         height: 40vh;
         width: 100%;
-        .ramen-reviews {
-            border: 1px solid red;
-        }
+        // .ramen-reviews {
+        //     border: 1px solid red;
+        // }
     }
 
+}
+
+
+@media (min-width: 800px) and (orientation: portrait) {
+    .call-to-action {
+        background-color: $mustard;
+        .call-to-action-title {
+            margin-bottom: 1rem;
+            color: $black;
+        }
+        .call-to-action-text {
+            @include Paragraph();
+        }
+    }
 }

@@ -10,6 +10,7 @@
 
 body {
   font-family: 'Noto Sans JP', sans-serif;
+  text-align: center;
 }
 
 .header .nav {
@@ -21,6 +22,8 @@ body {
   font-family: 'Coiny', cursive;
   font-size: 2.37rem;
   color: #E87346;
+  line-height: 1.77rem;
+  margin-bottom: 1rem;
 }
 
 .header .nav .sub-logo {
@@ -32,7 +35,6 @@ body {
 .header .nav-list .nav-item {
   margin: 1rem 0;
   display: inline-block;
-  list-style-type: none;
 }
 
 .header .nav-list .nav-item .nav-link {
@@ -40,10 +42,56 @@ body {
   text-decoration: none;
   text-transform: uppercase;
   font-weight: bold;
+  list-style-type: none;
+  -webkit-transition: opacity 400ms;
+  transition: opacity 400ms;
+}
+
+.header .nav-list .nav-item .nav-link:hover {
+  color: #E8D646;
+}
+
+.header .nav-list .nav-item .nav-link:active {
+  -webkit-transition: opacity 400ms;
+  transition: opacity 400ms;
+  opacity: .3;
 }
 
 .header .nav-list .nav-item + .nav-item {
   margin-left: 2.37rem;
+}
+
+.call-to-action .call-to-action-title {
+  margin-bottom: 1rem;
+  color: #2F2F2F;
+}
+
+.call-to-action .call-to-action-text {
+  display: block;
+  margin: 0 auto 4.21rem;
+  max-width: 60ch;
+  width: 90%;
+  text-align: justify;
+  line-height: 1.9rem;
+  letter-spacing: -0.04em;
+}
+
+.info-graph .info-graph-container .info-graph-title {
+  background-color: #333;
+  color: #9FFF47;
+  text-align: center;
+  padding: 2.37rem;
+  margin-bottom: 1.77rem;
+}
+
+.info-graph .info-graph-container .info-graph-text {
+  display: block;
+  margin: 0 auto 4.21rem;
+  max-width: 60ch;
+  width: 90%;
+  text-align: justify;
+  line-height: 1.9rem;
+  letter-spacing: -0.04em;
 }
 
 .figure .canvas-resize {
@@ -52,7 +100,22 @@ body {
   width: 100%;
 }
 
-.figure .canvas-resize .ramen-reviews {
-  border: 1px solid red;
+@media (min-width: 800px) and (orientation: portrait) {
+  .call-to-action {
+    background-color: #E8D646;
+  }
+  .call-to-action .call-to-action-title {
+    margin-bottom: 1rem;
+    color: #2F2F2F;
+  }
+  .call-to-action .call-to-action-text {
+    display: block;
+    margin: 0 auto 4.21rem;
+    max-width: 60ch;
+    width: 90%;
+    text-align: justify;
+    line-height: 1.9rem;
+    letter-spacing: -0.04em;
+  }
 }
 /*# sourceMappingURL=styles.css.map */

@@ -68,12 +68,18 @@ body {
   width: 100%;
 }
 
+.call-to-action .call-to-action-container {
+  background-image: url("../drawing2.svg");
+  background-size: cover;
+}
+
 .call-to-action .call-to-action-title {
   margin-bottom: 30px;
   color: #2F2F2F;
 }
 
 .call-to-action .call-to-action-text {
+  mix-blend-mode: hard-light;
   padding-left: 15px;
   width: 95%;
   max-width: 60ch;
@@ -89,7 +95,7 @@ body {
   display: block;
   background-image: url("../noodles-3201631_640.jpg");
   background: no-repeat contain;
-  padding: 50vh 0 0;
+  padding: 30vh 0 0;
   background-clip: border-box;
 }
 

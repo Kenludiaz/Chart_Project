@@ -85,7 +85,10 @@ $white: #fffefe;
 //======CTA=======
 .call-to-action {
     // background-image: url('../drawing2.svg');
-   
+    .call-to-action-container {
+        background-image: url("../drawing2.svg");
+        background-size: cover;
+    }
     background-size: contain;
     background-repeat: no-repeat;
     background-position: bottom left;
@@ -95,6 +98,7 @@ $white: #fffefe;
         color: $black;
     }
     .call-to-action-text {
+        mix-blend-mode: hard-light;
         @include Paragraph();
         padding-bottom: 1rem;
         display: block;
@@ -105,7 +109,7 @@ $white: #fffefe;
         display: block;
         background-image: url("../noodles-3201631_640.jpg");
         background: no-repeat contain;
-        padding: 50vh 0 0;
+        padding: 30vh 0 0;
         
         background-clip: border-box;
     }

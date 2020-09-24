@@ -33,7 +33,7 @@ body {
 }
 
 .header .nav-list .nav-item {
-  margin: 1rem 0;
+  margin: 1rem 0 0;
   display: inline-block;
 }
 
@@ -62,22 +62,35 @@ body {
 }
 
 .call-to-action {
-  margin: 1.77rem 0 5.5rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom left;
+  width: 100%;
 }
 
 .call-to-action .call-to-action-title {
-  margin-bottom: 1rem;
+  margin-bottom: 30px;
   color: #2F2F2F;
 }
 
 .call-to-action .call-to-action-text {
-  display: block;
-  margin: 0 auto 4.21rem;
+  padding-left: 15px;
+  width: 95%;
   max-width: 60ch;
-  width: 90%;
   text-align: justify;
   line-height: 1.9rem;
   letter-spacing: -0.04em;
+  padding-bottom: 1rem;
+  display: block;
+  margin: 0 auto;
+}
+
+.call-to-action .call-to-action-picture {
+  display: block;
+  background-image: url("../noodles-3201631_640.jpg");
+  background: no-repeat contain;
+  padding: 50vh 0 0;
+  background-clip: border-box;
 }
 
 .info-graph .info-graph-container {
@@ -96,25 +109,43 @@ body {
 }
 
 .info-graph .info-graph-container .info-graph-text {
-  display: block;
-  margin: 0 auto 4.21rem;
+  padding-left: 15px;
+  width: 95%;
   max-width: 60ch;
-  width: 90%;
   text-align: justify;
   line-height: 1.9rem;
   letter-spacing: -0.04em;
   color: #fffefe;
+  padding-bottom: 1rem;
 }
 
 .figure .canvas-resize {
   height: 80vh;
   width: 100%;
+  padding-top: 30px;
 }
 
 @media (min-width: 800px) {
+  .header {
+    margin-bottom: 1.77rem;
+  }
   .call-to-action {
-    height: 40vh;
-    margin: 7.37rem calc(50px + 45vw) 10rem 0;
+    height: 80vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .call-to-action div {
+    width: 70%;
+  }
+  .call-to-action .call-to-action-title {
+    text-align: none;
+  }
+  .call-to-action .call-to-action-picture {
+    background-image: url("../noodles-3201631_1280.jpg");
+    width: 50%;
+    outline: dotted #FFC259 10px;
+    margin-right: 20px;
   }
   .info-graph {
     display: -webkit-box;
@@ -125,6 +156,11 @@ body {
   }
   .info-graph .info-graph-container {
     width: 50%;
+  }
+  .info-graph .info-graph-container .info-graph-text {
+    display: block;
+    margin: 0 auto;
+    padding-left: 0;
   }
   .info-graph .figure {
     width: 50%;

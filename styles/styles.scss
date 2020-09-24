@@ -102,8 +102,11 @@ $white: #fffefe;
 //======Figure=======
 .info-graph {
     .info-graph-container {
+        background-color: $grey;
+        a {
+            color: $lime;
+        }
         .info-graph-title {
-            background-color: $grey;
             color: $lime;
             text-align: center;
             padding: 2.37rem;
@@ -111,6 +114,7 @@ $white: #fffefe;
         }
         .info-graph-text {
             @include Paragraph();
+            color: $white;
         }
     }
 }
@@ -118,8 +122,7 @@ $white: #fffefe;
 
 .figure {
     .canvas-resize {
-        position: relative;
-        height: 40vh;
+        height: 80vh;
         width: 100%;
         // .ramen-reviews {
         //     border: 1px solid red;
@@ -133,5 +136,26 @@ $white: #fffefe;
     .call-to-action {
         height: 40vh;
         margin: 7.37rem calc(50px + 45vw) 10rem 0;
+    }
+    .info-graph {
+        display: flex;
+        justify-content: space-around;
+        .info-graph-container {
+            width: 50%;
+        //     .info-graph-title {
+        //         background-color: $grey;
+        //         color: $lime;
+        //         text-align: center;
+        //         padding: 2.37rem;
+        //         margin-bottom: 1.77rem;
+        //     }
+        //     .info-graph-text {
+        //         @include Paragraph();
+        //     }
+        }
+        .figure {
+
+            width: 50%;
+        }
     }
 }

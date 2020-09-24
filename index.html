@@ -45,7 +45,7 @@
         <figure class="figure">
              <!-- Data was obtained by Kaggle.com -->
             <div class="canvas-resize">
-                <canvas id="ramen-reviews" class="ramen-reviews" width="300" height="300"></canvas>
+                <canvas id="ramen-reviews" class="ramen-reviews" width="1" height="1"></canvas>
             </div>
             <figcaption class="fig-caption">Top Ten Japanese (Non-Nissin) Cup Ramen according to <a href="https://www.theramenrater.com/">The Ramen Rater</a>.</figcaption>
         </figure>
@@ -63,7 +63,7 @@
                 //
                 let labels = (dataSet.map(a =>  a.variety));
                 // console.log(labels);
-
+                
                 let myChart = new Chart(canvas, {
                     type: 'bar',
                     data: {
@@ -72,15 +72,14 @@
                             label: 'Top Ten Japanese (None-Nissin) Cup Ramen',
                             data: [...stars],
                             backgroundColor: 
-                                'rgba(255, 159, 64, 0.2)'
+                            ' #FFC259'
                             ,
                             borderColor: 
-                                'rgba(255, 159, 64, 1)'
+                            'rgba(255, 159, 64, 1)'
                             ,
-                            borderWidth: 1
+                            borderWidth: 3
                         }]
                     },
-
                     options: {
                         animation: {
                             duration: 3000,
@@ -99,13 +98,14 @@
                     }
                 });
             }
+            myChart.height = 500;
             
             async function getData() {
                 let data = await fetch("./ramen-ratings.csv");
                 let response = await data.text();
                 let table = response.split('\n').slice(1);
                 let JPN = [];
-
+                
                 class Ramen{
                     constructor(brand, variety, stars) {
                         this.brand = brand;

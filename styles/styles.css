@@ -80,8 +80,15 @@ body {
   letter-spacing: -0.04em;
 }
 
-.info-graph .info-graph-container .info-graph-title {
+.info-graph .info-graph-container {
   background-color: #333;
+}
+
+.info-graph .info-graph-container a {
+  color: #9FFF47;
+}
+
+.info-graph .info-graph-container .info-graph-title {
   color: #9FFF47;
   text-align: center;
   padding: 2.37rem;
@@ -96,11 +103,11 @@ body {
   text-align: justify;
   line-height: 1.9rem;
   letter-spacing: -0.04em;
+  color: #fffefe;
 }
 
 .figure .canvas-resize {
-  position: relative;
-  height: 40vh;
+  height: 80vh;
   width: 100%;
 }
 
@@ -108,6 +115,19 @@ body {
   .call-to-action {
     height: 40vh;
     margin: 7.37rem calc(50px + 45vw) 10rem 0;
+  }
+  .info-graph {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+  .info-graph .info-graph-container {
+    width: 50%;
+  }
+  .info-graph .figure {
+    width: 50%;
   }
 }
 /*# sourceMappingURL=styles.css.map */
